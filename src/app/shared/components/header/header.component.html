@@ -1,0 +1,12 @@
+<div id="header" class="container-fluid d-flex justify-content-center align-items-center" 
+  [style.backgroundImage]="'url('+backgroundImg+')'">
+    <div id="content-wrapper">
+      <div id="title-wrapper" class="text-center">
+        <h1 class="display-1 text-yellow" style="font-family: Great Vibes" *ngIf="title !== undefined">{{title}}</h1>
+        <h1 class="display-3 text-white" style="font-family: Tenali Ramakrishna" *ngIf="subtitle !== undefined">{{subtitle}}</h1>
+      </div>
+      <div class="d-flex justify-content-center">
+        <ng-content></ng-content>
+      </div>
+    </div>
+</div>

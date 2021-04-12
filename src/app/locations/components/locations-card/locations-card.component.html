@@ -1,0 +1,36 @@
+<div id="card-wrapper" class="container shadow pt-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="col-6 col-md-9 col-lg-10">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="h5 font-weight-bold">{{data.name}}</h1>
+                    <p class="h6 font-italic">{{data.address}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div style="width:10px; height: 20px;"></div>
+                </div>
+            </div>
+            <div class="row align-items-end">
+                <div class="col h6 font-italic d-flex">
+                    <div class="mr-3" style="color:#04DC00">{{data.status}}</div>
+                    <div style="color:#000000;">{{data.storeHours}}</div>
+                </div>              
+            </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="row h-50">
+                <div class="col align-items-center d-flex justify-content-end">
+                    <a routerLink="#" type="submit" class="btn button-yellow btn-lg shadow h5 text-shadow">Pick Up</a>
+                </div>
+            </div>
+            <div class="row h-50">            
+                <div class="col align-items-center d-flex justify-content-end">
+                    <a routerLink="#" class="btn button-yellow btn-lg shadow h5 text-shadow">Delivery</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+

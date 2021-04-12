@@ -1,0 +1,31 @@
+<app-header
+  backgroundImg = "locations-header-bg.jpg"
+  title = "Location"
+  subtitle = "Select your sweet spot.">
+  <div id="search-box">
+    <div class="h3 text-white text-center">How would you like you food?</div>
+    <div class="form-group has-search">
+        <!-- <span class="fa fa-search form-control-feedback"></span> -->
+        <fa-icon [icon]="faSearch" class="form-control-feedback"></fa-icon>
+        <input type="text" class="form-control text-white" placeholder="City, State, Zip Code...">
+        <div class="d-flex justify-content-center align-items-center">
+            <button type="submit" class="btn button-white h5 mx-2 my-4">Delivery</button>
+            <button type="submit" class="btn button-yellow h5 mx-2 my-4">Pick Up</button>
+        </div>
+    </div>
+  </div>
+</app-header>
+
+<div id="main-container" class="container-fluid">
+  <div class="container pt-5">  
+    <ng-container *ngIf="locations.length > 0; else noData">
+      <app-locations-card *ngFor="let location of locations" [data] = "location"></app-locations-card>
+    </ng-container> 
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<ng-template #noData>
+  No Data Available
+</ng-template>

@@ -1,0 +1,1 @@
+export * from './restaurant-location.model'

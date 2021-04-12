@@ -1,0 +1,8 @@
+{
+    "locations":[
+        { "id" : "1", "name": "Location 1", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "2", "name": "Location 2", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "3", "name": "Location 3", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "4", "name": "Location 4", "address": "Address", "status": "Closed", "storeHours" : "Store Hours"}
+    ]
+}

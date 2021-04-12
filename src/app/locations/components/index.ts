@@ -1,0 +1,1 @@
+export * from './locations-card/locations-card.component';
