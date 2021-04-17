@@ -1,0 +1,107 @@
+#wrapper
+    max-width: 510px
+    height: auto
+    -webkit-user-select: none
+    -moz-user-select: none    
+    -ms-user-select: none    
+    user-select: none
+
+#container
+    display: grid
+    grid-template-columns: 1fr 2fr 0.2fr
+    grid-template-rows: 10px 36px 26px 36px 46px 36px 10px
+    grid-template-areas: ". . ." "art title favorite" "art rating ." "art price ." "art description description" "art info cart"
+    
+#art-cell
+    grid-area: art
+    display: flex
+    justify-content: center
+    align-items: center
+    img
+        max-width: 100%
+
+#title-cell
+    grid-area: title
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    p
+        color: black 
+        font-weight: bold
+
+#rating-cell
+    grid-area: rating
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    #reviews
+        color:#C4C4C4
+        font-style: italic
+    #star-ratings
+        unicode-bidi: bidi-override
+        color: #ccc  
+        position: relative
+        margin: 0
+        padding: 0
+        #fill-ratings 
+            color: #FFA901
+            padding: 0
+            position: absolute
+            z-index: 1
+            display: block
+            top: 0
+            left: 0
+            overflow: hidden
+            span 
+                isplay: inline-block
+            #empty-ratings 
+                padding: 0
+                display: block
+                z-index: 0
+
+#price-cell
+    grid-area: price
+    display: flex
+    justify-content: flex-start
+    align-items: center  
+    #price
+        color:#04DC00 
+        font-weight: bold
+    #oldPrice
+        color:#C4C4C4 
+        font-weight: normal
+        text-decoration: line-through
+
+#description-cell
+    grid-area: description
+    display: flex
+    justify-content: flex-start
+    align-items: center
+
+#more-info-cell
+    grid-area: info
+    display: flex
+    justify-content: flex-start
+    align-items: center  
+    p
+        color: #A4A4A4
+
+#favorite-cell
+    grid-area: favorite
+    display: flex
+    justify-content: center
+    align-items: center
+
+#cart-cell
+    grid-area: cart
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+
+.scaler
+    transition: transform .5s
+    &:hover
+        transform: scale(1.2)
+    

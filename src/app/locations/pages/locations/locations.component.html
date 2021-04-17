@@ -17,9 +17,9 @@
 </app-header>
 
 <div id="main-container" class="container-fluid">
-  <div class="container pt-5">  
+  <div class="container mt-5">  
     <ng-container *ngIf="locations.length > 0; else noData">
-      <app-locations-card *ngFor="let location of locations" [data] = "location"></app-locations-card>
+      <app-locations-card class="mb-5" *ngFor="let location of locations" [data] = "location"></app-locations-card>
     </ng-container> 
   </div>
 </div>

@@ -7,7 +7,7 @@ import { RestaurantLocation } from '../models';
   providedIn: 'root'
 })
 export class LocationsService {
-  private baseUrl = 'http://localhost:8000/locations';
+  private baseUrl = '/api/locations';
 
   constructor(private http: HttpClient) { }
 

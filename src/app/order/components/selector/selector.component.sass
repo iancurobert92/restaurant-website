@@ -1,0 +1,88 @@
+//=============== HORIZONTAL LAYOUT ===============//
+
+#navbar-horizontal
+    background-color: #FFA901
+    -webkit-user-select: none
+    -moz-user-select: none    
+    -ms-user-select: none    
+    user-select: none
+
+#navbar
+    border: 1px solid white
+
+.nav-link
+    color: #faecd1
+    padding: 10px 0px 10px 0px
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+        color: grey
+.nav-link.active
+    color: grey
+    background-color: white
+    background-color: rgb(255, 255, 255, 0.5)
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+        
+
+//=============== VERTICAL LAYOUT ===============//
+
+$navHeight:160px
+$buttonHeight:34px
+$maskHeight: $buttonHeight * 3
+$maskMargin: ($navHeight - $maskHeight)/2
+
+#navbar-vertical
+    display: block
+    position: relative
+    width: 90%
+    height: $navHeight
+    background-color: #FFA901
+    -webkit-user-select: none
+    -moz-user-select: none    
+    -ms-user-select: none    
+    user-select: none
+    overflow: hidden
+
+#list-mask
+    position: relative
+    width: 100%
+    height: 102px
+    margin-top: $maskMargin
+    overflow: hidden
+
+#frame
+    position: absolute
+    top: 50%
+    -webkit-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    transform: translateY(-50%)
+    height: $buttonHeight
+    width: 100%
+    border: 1px solid white
+
+#buttons-list
+    position: relative    
+    width: 100%
+    text-align: center
+    transition-duration: .5s
+
+#navbar-button
+    height: $buttonHeight
+    color: white
+
+.arrow-button
+    position: absolute
+    width: 100%
+    height: $buttonHeight
+    &:active
+        filter: sepia(100%) saturate(200%) brightness(70%) hue-rotate(330deg)
+
+#arrow-up
+    top: 0px
+    left: 50%
+    transform: translateX(-50%) rotate(180deg)
+
+#arrow-down
+    left: 50%
+    bottom: 0px
+    transform: translateX(-50%)

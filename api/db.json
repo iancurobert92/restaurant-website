@@ -1,0 +1,103 @@
+{
+    "locations":[
+        { "id" : "1", "name": "Location 1", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "2", "name": "Location 2", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "3", "name": "Location 3", "address": "Address", "status": "Open", "storeHours" : "Store Hours"},
+        { "id" : "4", "name": "Location 4", "address": "Address", "status": "Closed", "storeHours" : "Store Hours"}
+    ],
+    "products":[
+        { 
+            "id" : "1", 
+            "name": "Product 1", 
+            "rating": {
+                "value": 4.00,
+                "total": 5.00
+            },
+            "reviews": 2501,
+            "imgSrc": "/assets/images/products/sm/2.png",
+            "price": {
+                "value": 4.66,
+                "oldValue": 6.66,
+                "currency":"$"
+            },
+            "description": "Froot E-Liquid - Simple, sophisticated fruit based e-juices",
+            "categoryId": "others",
+            "categoryName":"Others",
+            "available": true,
+            "favorite": false,
+            "selected": false
+        },
+        { 
+            "id" : "2", 
+            "name": "Product 2", 
+            "rating": {
+                "value": 3.50,
+                "total": 5.00
+            },
+            "reviews": 2501,
+            "imgSrc": "/assets/images/products/sm/1.png",
+            "price": {
+                "value": 3.33,
+                "oldValue": 0,
+                "currency":"$"
+            },
+            "description": "Froot E-Liquid - Simple, sophisticated fruit based e-juices",
+            "categoryId": "drinks",
+            "categoryName":"Drinks",
+            "available": true,
+            "favorite": false,
+            "selected": false
+        },
+        { 
+            "id" : "2", 
+            "name": "Product 2", 
+            "rating": {
+                "value": 3.50,
+                "total": 5.00
+            },
+            "reviews": 2501,
+            "imgSrc": "/assets/images/products/sm/1.png",
+            "price": {
+                "value": 3.33,
+                "oldValue": 0,
+                "currency":"$"
+            },
+            "description": "Froot E-Liquid - Simple, sophisticated fruit based e-juices",
+            "categoryId": "drinks",
+            "categoryName":"Drinks",
+            "available": true,
+            "favorite": false,
+            "selected": false
+        },
+        { 
+            "id" : "2", 
+            "name": "Product 2", 
+            "rating": {
+                "value": 3.50,
+                "total": 5.00
+            },
+            "reviews": 2501,
+            "imgSrc": "/assets/images/products/sm/1.png",
+            "price": {
+                "value": 3.33,
+                "oldValue": 0,
+                "currency":"$"
+            },
+            "description": "Froot E-Liquid - Simple, sophisticated fruit based e-juices",
+            "categoryId": "drinks",
+            "categoryName":"Drinks",
+            "available": true,
+            "favorite": false,
+            "selected": false
+        }
+    ],
+    "categories":[
+        { "id": "all", "name":"All Categories" },
+        { "id": "others", "name":"Others" },
+        { "id": "breakfast", "name":"Breakfast" },
+        { "id": "salads", "name":"Salads" },
+        { "id": "soups", "name":"Soups" },
+        { "id": "chichen_courses", "name":"Chichen Courses" },
+        { "id": "drinks", "name":"Drinks" }
+    ]
+}

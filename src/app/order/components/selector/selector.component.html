@@ -1,0 +1,34 @@
+<div id="navbar-horizontal" class="container py-4 px-4 rounded-lg shadow d-none d-md-block">
+    <nav id="navbar" class="nav nav-pills nav-fill rounded">
+        <ng-container *ngFor="let category of data; let i = index">
+            <div
+                class="nav-item nav-link"
+                [class.active]="currentCategory === category.id"
+                (click)="onCategorySelect(i)"
+            >{{category.name}}</div>
+        </ng-container> 
+    </nav>
+</div>
+
+
+<div id="navbar-vertical" class="container rounded-lg shadow d-block d-md-none">
+    <div id="list-mask">
+        <div id="frame" class="rounded">
+            <div #list id="buttons-list">
+                <ng-container *ngFor="let category of data; let i = index">
+                    <div 
+                        id="navbar-button"
+                        class="d-flex justify-content-center align-items-center"
+                        [class.active]="currentCategory === category.id"
+                    >{{category.name}}</div>
+                </ng-container> 
+            </div>
+        </div>
+    </div>
+    <div id="arrow-up" class="arrow-button d-flex justify-content-center align-items-center" (click)="onUpButtonClick()">
+        <img src="/assets/icons/arrow_down.png"/>
+    </div>
+    <div id="arrow-down" class="arrow-button d-flex justify-content-center align-items-center" (click)="onDownBtnClick()">
+        <img src="/assets/icons/arrow_down.png"/>
+    </div>
+</div>

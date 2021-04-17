@@ -4,8 +4,29 @@
   subtitle = "Dishes On Our Menu.">
 </app-header>
 
-<div id="main-container" class="container-fluid">
-  
+<div id="main-container" class="container-fluid px-0">
+  <div id="main-wrapper">
+   <ng-container *ngIf="(cs.data$ | async) as categories">
+      <app-selector class="mt-2" *ngIf="categories.length > 0"
+        [data] = "categories"
+        [currentCategory] = "cs.currentCategory$ | async"
+        (onSelect) = "onCategorySelect($event)"
+      ></app-selector>
+    </ng-container>
+
+    <ng-container *ngIf="(ps.data$ | async) as products">
+      <div id="products-wrapper" class="mt-5" *ngIf="products.length > 0">
+        <ng-container *ngFor="let product of products">
+          <app-product
+            class="d-flex mb-5"
+            [data]="product"
+            >
+          </app-product>  
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <ngx-spinner></ngx-spinner>
 </div>
 
 <app-footer></app-footer>
