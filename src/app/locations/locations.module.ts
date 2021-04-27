@@ -13,7 +13,6 @@ import { LocationsRoutingModule } from './locations-routing.module';
     LocationsCardComponent
   ],
   imports: [
-    CommonModule,
     SharedModule,
     FontAwesomeModule,
     LocationsRoutingModule,

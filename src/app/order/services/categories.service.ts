@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SetCategories } from '@app/order/actions';
+import { SetCategories, SetSelectedCategory } from '@app/order/actions';
 import { Category } from '@app/order/models';
 import { OrderState } from '@app/order/order.state';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SetSelectedCategory as SetSelectedCategory } from './../actions/order.actions';
 import { OrdersApiService } from './orders-api.service';
 
 
@@ -24,7 +23,7 @@ export class CategoriesService {
   constructor(private api: OrdersApiService) { }
 
   @Dispatch()
-  public getCategories() {
+  public loadCategories() {
     return this.api.getCategories().pipe(
       map((categories: Category[]) => new SetCategories(categories))
     )

@@ -1,7 +1,7 @@
 <div id="wrapper" class="container shadow bg-white rounded-lg">
     <div id="container">
         <div id="art-cell">
-            <img class="d-flex p-2" src="{{data.imgSrc}}"/>
+            <img class="d-flex p-2" src="{{data.image}}"/>
         </div>
         <div id="title-cell">
             <p class="h4 mb-0">{{data.name}}</p>
@@ -48,8 +48,9 @@
             </div>
         </div>
         <div id="favorite-cell">
-            <a href="#" class="scaler">
-                <img src="/assets/icons/favorite-inactive.png"/>
+            <a (click)="onFavoriteClick(data)" class="scaler">
+                <img *ngIf="data.isFavorite" src="/assets/icons/favorite-active.png"/>
+                <img *ngIf="!data.isFavorite" src="/assets/icons/favorite-inactive.png"/>
             </a>
         </div>
         <div id="cart-cell">

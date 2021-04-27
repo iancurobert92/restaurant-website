@@ -1,24 +1,23 @@
-import { Price, Category, Rating } from '@app/order/models';
+import { Category, Price, Rating, Review } from '.';
 
 export class Product {
-    id!: string | number;
+    id!: any;
     name!: string;
-    rating!: Rating;
-    reviews!: number;
-    imgSrc!: string
-    price!: Price;
     description!: string;
+    image!: string;
+    status!: string;
+    reviews!: Review[];
+    rating!: Rating;
+    price!: Price;
     category!: Category;
-    available!: boolean;
-    favorite!: boolean;
-    selected!: boolean;
+    isFavorite!: boolean;
 
     getFormattedPrice(value: number): string {
         return this.price.currency + "" + value;
     }
 
     getReviews(): string {
-        return this.reviews + "Reviews";
+        return this.reviews.length + " Reviews";
     }
 
     getFormattedRating(): string {
@@ -30,6 +29,6 @@ export class Product {
     }
 
     getStatus(): string {
-        return this.available ? "Available" : "Not Available";
+        return "status";
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '@app/order/models/product.model';
 
 @Component({
@@ -9,10 +9,20 @@ import { Product } from '@app/order/models/product.model';
 export class ProductComponent implements OnInit {
 
   @Input() data!: Product;
+  @Output() addToWishlist: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() removeFromWishlist: EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  onFavoriteClick(data: Product): void {
+    if (data.isFavorite) {
+      this.removeFromWishlist.emit(data);
+    } else {
+      this.addToWishlist.emit(data);
+    }
   }
 }

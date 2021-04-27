@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { SetProducts } from '@app/order/actions';
+import { SetProductFavorite, SetProducts } from '@app/order/actions';
 import { Product } from '@app/order/models';
 import { OrderState } from '@app/order/order.state';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
+import { NgxSpinnerService } from "ngx-spinner";
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { OrdersApiService } from './orders-api.service';
-import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class ProductsService {
   ) { }
 
   @Dispatch()
-  getProducts() {
+  loadProducts() {
     return this.api.getAllProducts().pipe(
       map((products: Product[]) => new SetProducts(products))
     )
@@ -36,5 +36,10 @@ export class ProductsService {
       map((products: Product[]) => new SetProducts(products)),
       finalize(() => this.spinner.hide())
     )
+  }
+
+  @Dispatch()
+  setProductFavorite(productId: any, value: boolean) {
+    return new SetProductFavorite(productId, value)
   }
 }

@@ -20,13 +20,13 @@
           <app-product
             class="d-flex mb-5"
             [data]="product"
+            (addToWishlist)="onAddToWishlist($event)"
+            (removeFromWishlist)="onRemoveFromWishlist($event)"
             >
           </app-product>  
         </ng-container>
       </div>
     </ng-container>
   </div>
-  <ngx-spinner></ngx-spinner>
 </div>
-
 <app-footer></app-footer>

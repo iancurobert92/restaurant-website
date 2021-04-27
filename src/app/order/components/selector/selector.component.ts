@@ -10,7 +10,7 @@ export class SelectorComponent implements OnInit, AfterViewInit {
 
   @Input() data!: Category[] | null;
   @Input() currentCategory!: any;
-  @Output() onSelect: EventEmitter<any> = new EventEmitter<string | number>();
+  @Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('list') list!: ElementRef<HTMLElement>;
 
   private posY: number = 0;

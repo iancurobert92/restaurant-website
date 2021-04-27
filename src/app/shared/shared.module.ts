@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent, HeaderComponent, NavbarComponent } from './components';
 
 
 @NgModule({
@@ -14,13 +13,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    HttpClientModule,
+    RouterModule,
   ],
   exports: [
-    CommonModule,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
   ]
 })
 export class SharedModule { }

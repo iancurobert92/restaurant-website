@@ -1,5 +1,5 @@
 export class Price {
-    value: number = 0;
+    value!: number;
     oldValue!: number;
-    currency: string = "$";
+    currency!: string;
 }

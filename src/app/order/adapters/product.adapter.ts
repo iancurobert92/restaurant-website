@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Adapter } from "@app/core/models/adapter";
-import { Price, Product, Rating } from "../models";
-import { Category } from "../models/category.model";
+import { Category, Price, Product, Rating, Review } from "../models";
 
 @Injectable({
     providedIn: "root",
@@ -9,19 +8,17 @@ import { Category } from "../models/category.model";
 export class ProductAdapter implements Adapter<Product>{
 
     adapt(item: any): Product {
-        const product = new Product();
+        let product = new Product();
 
+        product.id = item.id;
         product.name = item.name;
-        product.reviews = item.reviews;
-        product.imgSrc = item.imgSrc;
+        product.image = item.image;
         product.description = item.description;
-        product.available = item.available;
-        product.favorite = item.favorite;
-        product.selected = item.selected;
+        product.isFavorite = false;
 
         product.category = new Category();
-        product.category.id = item.categoryId;
-        product.category.name = item.categoryName;
+        product.category.id = item.category.id;
+        product.category.name = item.category.name;
 
         product.rating = new Rating();
         product.rating.value = item.rating.value;
@@ -31,6 +28,15 @@ export class ProductAdapter implements Adapter<Product>{
         product.price.value = item.price.value;
         product.price.oldValue = item.price.oldValue;
         product.price.currency = item.price.currency;
+
+        product.reviews = [];
+        item.reviews.forEach((item: any) => {
+            let review: Review = new Review();
+            review.userName = item.userName;
+            review.message = item.message;
+            product.reviews.push(review);
+        })
+
 
         return product;
     }
