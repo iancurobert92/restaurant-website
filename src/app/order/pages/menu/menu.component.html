@@ -6,22 +6,24 @@
 
 <div id="main-container" class="container-fluid px-0">
   <div id="main-wrapper">
-   <ng-container *ngIf="(cs.data$ | async) as categories">
+   <ng-container *ngIf="(facade.categories$ | async) as categories">
       <app-selector class="mt-2" *ngIf="categories.length > 0"
         [data] = "categories"
-        [currentCategory] = "cs.currentCategory$ | async"
+        [currentCategory] = "facade.currentCategory$ | async"
         (onSelect) = "onCategorySelect($event)"
       ></app-selector>
     </ng-container>
 
-    <ng-container *ngIf="(ps.data$ | async) as products">
+    <ng-container *ngIf="(facade.products$ | async) as products">
       <div id="products-wrapper" class="mt-5" *ngIf="products.length > 0">
         <ng-container *ngFor="let product of products">
           <app-product
             class="d-flex mb-5"
             [data]="product"
+            [isFavorite] = "((facade.wishlist$ | async) | findIndex:'id': product.id) >= 0"
             (addToWishlist)="onAddToWishlist($event)"
             (removeFromWishlist)="onRemoveFromWishlist($event)"
+            (addToCart)="onAddToCart($event)"
             >
           </app-product>  
         </ng-container>

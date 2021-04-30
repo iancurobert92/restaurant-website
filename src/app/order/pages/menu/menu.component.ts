@@ -1,9 +1,7 @@
-import { switchMap, tap } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SetProductFavorite, SetProducts, SetWishlist } from '@app/order/actions';
+import { CategoryType } from '@app/order/enums';
 import { Product } from '@app/order/models';
-import { CategoriesService, ProductsService, WishlistService } from '@app/order/services';
+import { MenuFacade } from './menu.facade';
 
 @Component({
   selector: 'app-menu',
@@ -12,47 +10,41 @@ import { CategoriesService, ProductsService, WishlistService } from '@app/order/
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  private subscription!: Subscription;
-
   constructor(
-    public cs: CategoriesService,
-    public ps: ProductsService,
-    public ws: WishlistService
+    public facade: MenuFacade
   ) { }
 
   ngOnInit(): void {
-    this.cs.loadCategories();
+    this.facade.loadCategories();
+    this.facade.loadWishlist();
+    this.facade.loadCart();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+
   }
 
   onCategorySelect(id: any): void {
-    this.cs.setSelectedCategory(id);
+    this.facade.setSelectedCategory(id);
 
-    let products$: Observable<SetProducts>;
-
-    if (id == "all" || id == "") {
-      products$ = this.ps.loadProducts();
+    if (id == CategoryType.All) {
+      this.facade.loadProducts();
     } else {
-      products$ = this.ps.getProductsFromCategory(id);
+      this.facade.getProductsFromCategory(id);
     }
-
-    this.subscription = products$.subscribe({
-      complete: () => this.ws.loadWishlist(),
-      error: (error) => console.log(error)
-    });
   }
 
   onAddToWishlist(data: Product): void {
-    this.ws.addToWishlist(data);
+    this.facade.addToWishlist(data);
   }
 
   onRemoveFromWishlist(data: Product): void {
-    this.ws.removeFromWishlist(data);
+    this.facade.removeFromWishlist(data);
   }
+
+  onAddToCart(data: Product): void {
+    this.facade.addToCart(data);
+  }
+
 }
 

@@ -1,45 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SetProductFavorite, SetProducts } from '@app/order/actions';
 import { Product } from '@app/order/models';
-import { OrderState } from '@app/order/order.state';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Select } from '@ngxs/store';
-import { NgxSpinnerService } from "ngx-spinner";
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
-import { OrdersApiService } from './orders-api.service';
+import { map } from 'rxjs/operators';
+import { ProductAdapter } from '@app/order/adapters';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  @Select(OrderState.products)
-  data$!: Observable<Product[]>
+  private baseUrl = '/api/products';
 
   constructor(
-    private api: OrdersApiService,
-    private spinner: NgxSpinnerService
+    private http: HttpClient,
+    private productAdapter: ProductAdapter
   ) { }
 
-  @Dispatch()
-  loadProducts() {
-    return this.api.getAllProducts().pipe(
-      map((products: Product[]) => new SetProducts(products))
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<any[]>(this.baseUrl).pipe(
+      map((data: any[]) => data.map((item: any) => this.productAdapter.adapt(item)))
     )
   }
 
-  @Dispatch()
-  getProductsFromCategory(id: any) {
-    this.spinner.show();
-    return this.api.getProductsFromCategory(id).pipe(
-      map((products: Product[]) => new SetProducts(products)),
-      finalize(() => this.spinner.hide())
+  getProductsFromCategory(id: any): Observable<Product[]> {
+    return this.http.get<any[]>(`${this.baseUrl}?category.id=${id}`).pipe(
+      map((data: any[]) => data.map((item: any) => this.productAdapter.adapt(item)))
     )
-  }
-
-  @Dispatch()
-  setProductFavorite(productId: any, value: boolean) {
-    return new SetProductFavorite(productId, value)
   }
 }

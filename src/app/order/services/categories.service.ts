@@ -1,36 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SetCategories, SetSelectedCategory } from '@app/order/actions';
+import { CategoryAdapter } from '@app/order/adapters';
 import { Category } from '@app/order/models';
-import { OrderState } from '@app/order/order.state';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { OrdersApiService } from './orders-api.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  @Select(OrderState.categories)
-  data$!: Observable<Category[]>
+  private baseUrl = '/api/categories';
 
-  @Select(OrderState.currentCategory)
-  currentCategory$!: Observable<any>
+  constructor(
+    private http: HttpClient,
+    private categoryAdapter: CategoryAdapter
+  ) { }
 
-  constructor(private api: OrdersApiService) { }
-
-  @Dispatch()
-  public loadCategories() {
-    return this.api.getCategories().pipe(
-      map((categories: Category[]) => new SetCategories(categories))
+  getCategories(): Observable<Category[]> {
+    return this.http.get<any[]>(this.baseUrl).pipe(
+      map((data: any[]) => data.map((item: any) => this.categoryAdapter.adapt(item)))
     )
-  }
-
-  @Dispatch()
-  public setSelectedCategory(id: any) {
-    return new SetSelectedCategory(id);
   }
 }

@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AddWishlistItem, SetCategories, SetProductFavorite, SetProducts, SetSelectedCategory, SetWishlist, RemoveWishlistItem } from '@app/order/actions';
-import { Category, WishlistItem } from '@app/order/models';
+import {
+    AddToWishlist,
+    RemoveFromWishlist,
+    SetCart,
+    SetCategories,
+    SetProducts,
+    SetSelectedCategory,
+    SetWishlist,
+    AddToCart,
+    RemoveFromCart
+} from '@app/order/actions';
+import { CartItem, Category, Product, WishlistItem } from '@app/order/models';
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
-import { Product } from './models/product.model';
 
 export interface OrderStateModel {
     orderType: string,
@@ -11,7 +20,7 @@ export interface OrderStateModel {
     categories: Category[]
     products: Product[],
     wishlist: WishlistItem[],
-    cart: object[],
+    cart: CartItem[],
     taxes: number,
     subtotal: number,
     total: number,
@@ -36,32 +45,26 @@ export interface OrderStateModel {
 export class OrderState {
 
     @Selector()
-    static currentCategory(state: OrderStateModel): any {
-        return state.currentCategory;
-    }
+    static currentCategory(state: OrderStateModel): any { return state.currentCategory; }
 
     @Selector()
-    static categories(state: OrderStateModel): Category[] {
-        return state.categories;
-    }
+    static categories(state: OrderStateModel): Category[] { return state.categories; }
 
     @Selector()
-    static products(state: OrderStateModel): Product[] {
-        return state.products;
-    }
+    static products(state: OrderStateModel): Product[] { return state.products; }
 
     @Selector()
-    static wishlist(state: OrderStateModel): any {
-        return state.wishlist;
-    }
+    static wishlist(state: OrderStateModel): WishlistItem[] { return state.wishlist; }
 
     @Selector()
-    static cart(state: OrderStateModel): any {
-        return state.cart;
-    }
+    static cart(state: OrderStateModel): CartItem[] { return state.cart; }
 
     @Action(SetCategories)
     setCategories(ctx: StateContext<OrderStateModel>, { categories }: SetCategories) {
+        const categoryAll: Category = new Category();
+        categoryAll.id = "all";
+        categoryAll.name = "All Categories";
+        categories.unshift(categoryAll);
         ctx.setState(
             patch({
                 categories: categories
@@ -87,21 +90,6 @@ export class OrderState {
         )
     }
 
-    @Action(SetProductFavorite)
-    setProductFavorite(ctx: StateContext<OrderStateModel>, { productId, value }: SetProductFavorite) {
-        const products: Product[] = ctx.getState().products;
-        const index: number = products.findIndex((item) => item.id == productId);
-        const newProduct = new Product();
-        Object.assign(newProduct, products[index]);
-        newProduct.isFavorite = value;
-
-        ctx.setState(
-            patch({
-                products: updateItem<Product>(item => item?.id === productId, newProduct)
-            })
-        )
-    }
-
     @Action(SetWishlist)
     setWishlist(ctx: StateContext<OrderStateModel>, { wishlist }: SetWishlist) {
         ctx.setState(
@@ -111,8 +99,8 @@ export class OrderState {
         )
     }
 
-    @Action(AddWishlistItem)
-    addProductToWishlist(ctx: StateContext<OrderStateModel>, { item }: AddWishlistItem) {
+    @Action(AddToWishlist)
+    addToWishlist(ctx: StateContext<OrderStateModel>, { item }: AddToWishlist) {
         ctx.setState(
             patch({
                 wishlist: append([item])
@@ -120,11 +108,56 @@ export class OrderState {
         )
     }
 
-    @Action(RemoveWishlistItem)
-    removeProductToWishlist(ctx: StateContext<OrderStateModel>, { item }: AddWishlistItem) {
+    @Action(RemoveFromWishlist)
+    removeFromWishlist(ctx: StateContext<OrderStateModel>, { item }: AddToWishlist) {
         ctx.setState(
             patch({
                 wishlist: removeItem<WishlistItem>(elem => elem?.id === item.id)
+            })
+        )
+    }
+
+    @Action(SetCart)
+    setCart(ctx: StateContext<OrderStateModel>, { cart }: SetCart) {
+        const currentCart: CartItem[] = cart;
+        const cartMap: Map<any, CartItem> = new Map<any, CartItem>();
+        currentCart.forEach(item => {
+            const key = item.id;
+            if (!cartMap.has(key)) {
+                cartMap.set(key, item);
+                cartMap.get(key)!.qty = 0;
+            }
+            cartMap.get(key)!.qty++;
+        })
+
+        ctx.setState(
+            patch({
+                cart: Array.from(cartMap.values())
+            })
+        )
+    }
+
+    @Action(AddToCart)
+    addToCart(ctx: StateContext<OrderStateModel>, { item }: AddToCart) {
+        const currentCart: CartItem[] = ctx.getState().cart;
+        const productExists: boolean = currentCart.findIndex(el => el.id === item.id) >= 0;
+        if (productExists)
+            item.qty++;
+
+        ctx.setState(
+            patch({
+                cart: productExists
+                    ? updateItem<CartItem>(product => product?.id === item.id, item)
+                    : append([item])
+            })
+        )
+    }
+
+    @Action(RemoveFromCart)
+    removeFromCart(ctx: StateContext<OrderStateModel>, { item }: RemoveFromCart) {
+        ctx.setState(
+            patch({
+                cart: removeItem<CartItem>(elem => elem?.id === item.id)
             })
         )
     }

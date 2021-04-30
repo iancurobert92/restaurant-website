@@ -5,12 +5,12 @@ export class SetWishlist {
     constructor(public wishlist: WishlistItem[]) { }
 }
 
-export class AddWishlistItem {
+export class AddToWishlist {
     static type = '[Wishlist] AddWishlistItem';
     constructor(public item: WishlistItem) { }
 }
 
-export class RemoveWishlistItem {
+export class RemoveFromWishlist {
     static type = '[Wishlist] RemoveWishlistItem';
     constructor(public item: WishlistItem) { }
 }

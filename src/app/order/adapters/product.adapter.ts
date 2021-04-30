@@ -14,7 +14,7 @@ export class ProductAdapter implements Adapter<Product>{
         product.name = item.name;
         product.image = item.image;
         product.description = item.description;
-        product.isFavorite = false;
+        product.status = item.status;
 
         product.category = new Category();
         product.category.id = item.category.id;

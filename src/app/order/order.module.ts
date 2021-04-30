@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductComponent, SelectorComponent } from './components';
 import { OrderRoutingModule } from './order-routing.module';
 import { MenuComponent } from './pages/menu/menu.component';
+import { ProductStatusPipe } from './pipes/product-status.pipe';
 
 
 
@@ -13,7 +14,8 @@ import { MenuComponent } from './pages/menu/menu.component';
   declarations: [
     MenuComponent,
     ProductComponent,
-    SelectorComponent
+    SelectorComponent,
+    ProductStatusPipe
   ],
   imports: [
     SharedModule,

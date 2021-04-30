@@ -8,9 +8,9 @@
         </div>
         <div id="rating-cell">
             <div class="d-flex align-items-center">
-                <p class="h6 mb-0 mr-1">{{data.getFormattedRating()}}</p>
+                <p class="h6 mb-0 mr-1">{{data.rating.value}}</p>
                 <div id="star-ratings">
-                    <div id="fill-ratings" [style.width]="data.getRatingPercentage()+'%'">
+                    <div id="fill-ratings" [style.width]="(data.rating.value / data.rating.total) | percent">
                         <span>
                             <ng-container *ngFor="let i of [].constructor(data.rating.total)">
                                 <ng-container>★</ng-container>
@@ -23,14 +23,14 @@
                         </ng-container>
                     </div>
                 </div>
-                <p id="reviews" class="h6 small mb-0 ml-1">({{data.getReviews()}})</p>
+                <p id="reviews" class="h6 small mb-0 ml-1">{{data.reviews.length}} Reviews</p>
             </div>
         </div>
         <div id="price-cell">
             <p class="h4 mb-0">
-                <span id="price">{{data.getFormattedPrice(data.price.value)}}</span> 
+                <span id="price">{{data.price.value | currency: data.price.currency: 'symbol'}}</span> 
                 <ng-container *ngIf="data.price.oldValue > 0">
-                / <span id="oldPrice">{{data.getFormattedPrice(data.price.oldValue)}}</span>
+                / <span id="oldPrice">{{data.price.oldValue | currency: data.price.currency: 'symbol'}}</span>
                 </ng-container>
             </p>
         </div>
@@ -43,18 +43,18 @@
                 <p class="h6 mb-0 ml-2">{{data.category.name}}</p>
             </div>
             <div class="d-flex align-items-center ml-4">
-                <img src="/assets/icons/available.png"/>
-                <p class="h6 mb-0 ml-2">{{data.getStatus()}}</p>
+                <img src="/assets/icons/{{getStatusIcon()}}"/>
+                <p class="h6 mb-0 ml-2">{{data.status | productStatus}}</p>
             </div>
         </div>
         <div id="favorite-cell">
-            <a (click)="onFavoriteClick(data)" class="scaler">
-                <img *ngIf="data.isFavorite" src="/assets/icons/favorite-active.png"/>
-                <img *ngIf="!data.isFavorite" src="/assets/icons/favorite-inactive.png"/>
+            <a class="scaler" (click)="onFavoriteClick(data)">
+                <img *ngIf="isFavorite" src="/assets/icons/favorite-active.png"/>
+                <img *ngIf="!isFavorite" src="/assets/icons/favorite-inactive.png"/>
             </a>
         </div>
         <div id="cart-cell">
-            <a href="#" class="scaler">
+            <a class="scaler" (click)="onCartClick(data)">
                 <img src="/assets/icons/basket.png"/>
             </a>
         </div>

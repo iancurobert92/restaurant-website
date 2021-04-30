@@ -3,10 +3,6 @@ const fs = require( "fs" );
 
 const categories = [
     {
-        "id": "all",
-        "name": "All Categories"
-    },
-    {
         "id": "others",
         "name": "Others"
     },
@@ -23,8 +19,8 @@ const categories = [
         "name": "Soups"
     },
     {
-        "id": "chichen_courses",
-        "name": "Chichen Courses"
+        "id": "chicken_courses",
+        "name": "Chicken Courses"
     },
     {
         "id": "drinks",
@@ -67,16 +63,16 @@ function generateProducts( n ) {
                 "name": faker.commerce.productName(),
                 "description": faker.commerce.productDescription(),
                 "image": faker.random.image(),
-                "status": faker.random.arrayElement( ["available", "notAvailable", "comingSoon"] ),
+                "status": faker.random.arrayElement( ["available", "not_available", "coming_soon"] ),
                 "reviews": reviews,
                 "rating": {
-                    "value": faker.datatype.float( 5 ),
+                    "value": faker.datatype.float( { min: 1, max: 5 } ),
                     "total": 5
                 },
                 "price": {
                     "value": faker.commerce.price( 1, 20 ),
                     "oldValue": faker.commerce.price( 1, 20 ),
-                    "currency": faker.finance.currencySymbol()
+                    "currency": faker.finance.currencyCode()
                 }
             },
         );
