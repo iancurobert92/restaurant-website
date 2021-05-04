@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent, HeaderComponent, NavbarComponent } from './components';
-import { FindIndexPipe } from './pipes/findIndex.pipe';
+import { FooterComponent, HeaderComponent, NavbarComponent } from '@app/shared/components';
+import { FindIndexPipe } from '@app/shared/pipes';
 
 
 @NgModule({

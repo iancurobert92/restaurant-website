@@ -5,7 +5,6 @@ import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
-import { SharedModule } from '@shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 
@@ -21,7 +20,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule,
   ],
   exports: [
-    SharedModule,
     NgbModule,
     NgxsModule,
     NgxsReduxDevtoolsPluginModule,

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { OrderModule } from './order/order.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { OrderModule } from './order/order.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
+    SharedModule,
     HomeModule,
     LocationsModule,
     OrderModule,
