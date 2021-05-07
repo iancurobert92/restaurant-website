@@ -1,0 +1,76 @@
+<app-header
+  backgroundImg = "menu-header-bg.jpg"
+  title = "Menu"
+  subtitle = "Dishes On Our Menu.">
+</app-header>
+
+<div id="main-container" class="container-fluid px-0">
+  <div id="wrapper" class="container shadow bg-white rounded-lg my-5">
+    <ng-container *ngIf="(cart$ | async) as cart">
+      <ng-container *ngIf="cart.items.length > 0">
+        <div class="row">
+          <div id="order-cost" class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">            
+            <div class="row w-100">
+              <div class="col-12 h1 py-4 text-center">
+                Order Details
+              </div>
+              <div class="col-12">
+                <div class="row h4">
+                  <div class="col">
+                    Subtotal
+                  </div>
+                  <div class="col-4 text-right">
+                    {{cart.items | orderCost | currency: cart.currency }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    Tax & Fees
+                  </div>
+                  <div class="col-4 text-right">
+                    {{0 | currency : cart.currency }}
+                  </div>
+                </div>
+                <div class="row h7">
+                  <div class="col">
+                    Delivery
+                  </div>
+                  <div class="col-4 text-right">
+                    {{cart.delivery | currency : cart.currency }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row h4">
+                  <div class="col">
+                    Total
+                  </div>
+                  <div class="col-4 text-right">
+                    {{(cart.items | orderCost) + cart.taxes + cart.delivery | currency: cart.currency }}
+                  </div>
+                </div>
+              </div>
+            </div>           
+          </div>     
+          <div id="products-list" class="col-sm-12 col-md-6">
+            <div id="product-list-wrapper" class="p-2" *ngIf="cart.items.length > 0">
+              <ng-container *ngFor="let item of cart.items">
+                <app-cart-item
+                  class="d-flex py-2"
+                  [data]="item"
+                  (remove)="onRemove($event)"
+                ></app-cart-item>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-12 p-4 d-flex justify-content-center align-items-center">
+            <div class="btn button-yellow">
+              <div class="h4 my-1">Continue</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<app-footer></app-footer>

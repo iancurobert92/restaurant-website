@@ -1,12 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { OrderState } from '@app/order/order.state';
 import { NgxsModule } from '@ngxs/store';
 import { SharedModule } from '../shared/shared.module';
 import { ProductComponent, SelectorComponent } from './components';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { OrderRoutingModule } from './order-routing.module';
+import { CartComponent } from './pages/cart/cart.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { OrderCostPipe } from './pipes/order-cost.pipe';
 import { ProductStatusPipe } from './pipes/product-status.pipe';
+import { CategoriesState, ProductsState } from './stores';
 
 
 
@@ -15,12 +17,15 @@ import { ProductStatusPipe } from './pipes/product-status.pipe';
     MenuComponent,
     ProductComponent,
     SelectorComponent,
-    ProductStatusPipe
+    ProductStatusPipe,
+    OrderCostPipe,
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     SharedModule,
     OrderRoutingModule,
-    NgxsModule.forFeature([OrderState])
+    NgxsModule.forFeature([ProductsState, CategoriesState])
   ]
 })
 export class OrderModule { }

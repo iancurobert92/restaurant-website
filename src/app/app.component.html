@@ -1,24 +1,25 @@
-<div id="wrapper">
-    <div id="content" [@toggleClick] = "toggleContent">
+<div id="wrapper" *ngIf="(navbar$ | async) as navbar">
+    <div *ngIf="(cartItems$ | async) as cartItems" id="content" [@contentOpenClose] = "navbar.expanded ? 'close' : 'open'">
         <app-navbar 
             id="app-navbar"
-            (toggle) = "toggle()"            
+            [totalCartItems]="cartItems | productsQty"
+            (toggle) = "toggle(navbar.expanded)"            
         ></app-navbar>
         <router-outlet></router-outlet>
     </div>
     <nav 
         id="sidebar"
-        [@toggleClick] = "toggleSidebar"
+        [@sidebarOpenClose] = "navbar.expanded ? 'open' : 'close'"
         >
         <ul class="list-unstyled pt-2 pb-4 px-4">
             <li>
-                <a class="navbar-custom-link h5" routerLink="/home" (click) = "toggle()">Home</a>
+                <a class="navbar-custom-link h5" routerLink="/home" (click) = "toggle(navbar.expanded)">Home</a>
             </li>
             <li>
-                <a class="navbar-custom-link h5" routerLink="/locations" (click) = "toggle()">Locations</a>
+                <a class="navbar-custom-link h5" routerLink="/locations" (click) = "toggle(navbar.expanded)">Locations</a>
             </li>  
             <li>
-                <a class="navbar-custom-link h5" routerLink="/menu" (click) = "toggle()">Menu</a>
+                <a class="navbar-custom-link h5" routerLink="/menu" (click) = "toggle(navbar.expanded)">Menu</a>
             </li>           
         </ul>
     </nav>

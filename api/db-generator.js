@@ -72,7 +72,7 @@ function generateProducts( n ) {
                 "price": {
                     "value": faker.commerce.price( 1, 20 ),
                     "oldValue": faker.commerce.price( 1, 20 ),
-                    "currency": faker.finance.currencyCode()
+                    "currency": 'USD'//faker.finance.currencyCode()
                 }
             },
         );

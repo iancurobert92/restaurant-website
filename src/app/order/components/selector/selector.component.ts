@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
-import { Category } from '@app/order/models';
+import { Category } from '@app/core/models';
 
 @Component({
   selector: 'app-selector',

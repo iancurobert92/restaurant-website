@@ -1,33 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent, HeaderComponent, NavbarComponent } from '@app/shared/components';
-import { FindIndexPipe } from '@app/shared/pipes';
+import { FooterComponent, HeaderComponent, NavbarComponent } from './components';
+import { FindIndexPipe } from './pipes';
+import { ProductsQtyPipe } from './pipes/products-qty.pipe';
 
 
 @NgModule({
   declarations: [
+    NavbarComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
-    FindIndexPipe
+    FindIndexPipe,
+    ProductsQtyPipe
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
-    RouterModule,
+    RouterModule,   
   ],
-  exports: [
+  exports: [    
+    NavbarComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
+
     FindIndexPipe,
-
+    ProductsQtyPipe,
+    
     CommonModule,
-    HttpClientModule,
     RouterModule,
-
   ]
 })
 export class SharedModule { }

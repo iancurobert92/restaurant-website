@@ -1,6 +1,6 @@
-import { ProductStatus } from './../../enums/product-status.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '@app/order/models/product.model';
+import { Product } from '@app/core/models';
+import { ProductStatus } from '@app/order/enums';
 
 @Component({
   selector: 'app-product',

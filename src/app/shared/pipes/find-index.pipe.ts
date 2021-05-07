@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FindIndexPipe implements PipeTransform {
 
-  transform(array: any[] | null, property: any, value: any): number {
-    if (!array) return -1;
-    return array.findIndex(item => item[property] === value);
+  transform(value: any[] | null, property: any, propValue: any): number {
+    if (!value) return -1;
+    return value.findIndex(item => item[property] === propValue);
   }
 
 }

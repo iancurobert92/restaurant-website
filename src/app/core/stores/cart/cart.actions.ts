@@ -1,4 +1,4 @@
-import { CartItem } from '@app/order/models';
+import { CartItem } from "@app/core/models";
 
 export class SetCart {
     static readonly type = '[Cart] SetCart';

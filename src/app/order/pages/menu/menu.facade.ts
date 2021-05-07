@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  AddToCart, AddToWishlist,
-  RemoveFromWishlist,
-  SetCart, SetCategories,
-  SetProducts,
-  SetSelectedCategory,
-  SetWishlist
-} from '@app/order/actions';
-import { CartItem, Category, Product, WishlistItem } from '@app/order/models';
-import { OrderState } from '@app/order/order.state';
-import { CartService, CategoriesService, ProductsService, WishlistService } from '@app/order/services';
+import { CartItem, Category, Product, WishlistItem } from '@app/core/models';
+import { CartService, WishlistService } from '@app/core/services';
+import { AddToCart, AddToWishlist, RemoveFromWishlist, SetCart, SetWishlist } from '@app/core/stores';
+import { CartState } from '@app/core/stores/cart/cart.state';
+import { WishlistState } from '@app/core/stores/wishlist/wishlist.state';
+import { CategoriesService, ProductsService } from '@app/order/services';
+import { CategoriesState, ProductsState, SetCategories, SetProducts, SetSelectedCategory } from '@app/order/stores';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -21,20 +17,20 @@ import { finalize, map } from 'rxjs/operators';
 })
 export class MenuFacade {
 
-  @Select(OrderState.categories)
+  @Select(CategoriesState.categories)
   categories$!: Observable<Category[]>
 
-  @Select(OrderState.currentCategory)
+  @Select(CategoriesState.currentCategory)
   currentCategory$!: Observable<any>
 
-  @Select(OrderState.products)
+  @Select(ProductsState.products)
   products$!: Observable<Product[]>
 
-  @Select(OrderState.wishlist)
+  @Select(WishlistState.wishlist)
   wishlist$!: Observable<WishlistItem[]>
 
-  @Select(OrderState.cart)
-  cart$!: Observable<CartItem[]>
+  @Select(CartState.items)
+  cartItems$!: Observable<CartItem[]>
 
   constructor(
     private categoriesAPI: CategoriesService,

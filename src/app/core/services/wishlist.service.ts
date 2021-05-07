@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product, WishlistItem } from '@app/order/models';
+import { Product } from '@app/core/models';
 import { Observable } from 'rxjs';
+import { WishlistItem } from '@app/core/models';
 
 @Injectable({
   providedIn: 'root'

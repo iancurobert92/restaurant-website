@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryType } from '@app/order/enums';
-import { Product } from '@app/order/models';
+import { Product } from '@app/core/models';
 import { MenuFacade } from './menu.facade';
 
 @Component({
@@ -16,8 +16,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.loadCategories();
-    this.facade.loadWishlist();
-    this.facade.loadCart();
   }
 
   ngOnDestroy(): void {

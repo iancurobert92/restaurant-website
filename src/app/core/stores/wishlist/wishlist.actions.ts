@@ -1,4 +1,4 @@
-import { Product, WishlistItem } from '@app/order/models';
+import { WishlistItem } from "@app/core/models";
 
 export class SetWishlist {
     static type = "[Wishlist] SetWishlist";

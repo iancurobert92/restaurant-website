@@ -1,0 +1,19 @@
+<div id="wrapper" class="container shadow-sm bg-white rounded-lg">
+    <div class="row">
+        <div class="col-8 d-flex justify-content-start align-items-center">
+            <div class="row">
+                <div class="col-12">
+                    {{data.product.name}}
+                </div>
+                <div class="col-12">
+                    {{data.product.price.value | currency : data.product.price.currency}} x {{data.qty}}
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end align-items-center">
+            <div class="btn" (click)="onRemove(data)">
+                <div class="btn button-red">Remove</div>
+            </div>
+        </div>
+    </div>
+</div>

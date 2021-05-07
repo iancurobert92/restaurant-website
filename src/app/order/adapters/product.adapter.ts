@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Adapter } from "@app/core/models/adapter";
-import { Category, Price, Product, Rating, Review } from "../models";
+import { Adapter } from "@app/core/models/adapter.model";
+import { Category, Price, Product, Rating, Review } from "@app/core/models";
 
 @Injectable({
     providedIn: "root",

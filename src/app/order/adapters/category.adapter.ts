@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Adapter } from "@app/core/models/adapter";
-import { Category } from '@app/order/models';
+import { Adapter, Category } from "@app/core/models";
 
 @Injectable({
     providedIn: "root",

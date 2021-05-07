@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CategoryAdapter } from '@app/order/adapters';
-import { Category } from '@app/order/models';
+import { Category } from '@app/core/models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
