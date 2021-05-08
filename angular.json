@@ -32,7 +32,10 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.sass"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "faker"
+           ]
           },
           "configurations": {
             "production": {
@@ -52,8 +55,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

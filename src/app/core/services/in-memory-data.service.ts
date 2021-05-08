@@ -9,41 +9,38 @@ import * as faker from 'faker'
 export class InMemoryDataService implements InMemoryDbService {
   categories = [
     {
-      "id": "others",
-      "name": "Others"
+      id: "others",
+      name: "Others"
     },
     {
-      "id": "breakfast",
-      "name": "Breakfast"
+      id: "breakfast",
+      name: "Breakfast"
     },
     {
-      "id": "salads",
-      "name": "Salads"
+      id: "salads",
+      name: "Salads"
     },
     {
-      "id": "soups",
-      "name": "Soups"
+      id: "soups",
+      name: "Soups"
     },
     {
-      "id": "chicken_courses",
-      "name": "Chicken Courses"
+      id: "chicken_courses",
+      name: "Chicken Courses"
     },
     {
-      "id": "drinks",
-      "name": "Drinks"
+      id: "drinks",
+      name: "Drinks"
     }
   ];
 
   createDb() {
-    const locations = this.generateLocations(10);
-    const products = this.generateProducts(10);
-
     return {
-      'locations': this.generateLocations(10),
-      'products': this.generateProducts(100),
-      'categories': this.categories,
-      'wishlist': [],
-      'cart': []
+      locations: this.generateLocations(10),
+      products: this.generateProducts(100),
+      categories: this.categories,
+      wishlist: [],
+      cart: []
     };
   }
 
@@ -53,11 +50,11 @@ export class InMemoryDataService implements InMemoryDbService {
 
       locations.push(
         {
-          "id": id,
-          "name": faker.address.city(),
-          "address": faker.address.streetAddress(true),
-          "status": faker.random.arrayElement(["Open", "Closed"]),
-          "storeHours": faker.random.arrayElement(["Store Hours", "10:00-18:00"]),
+          id: id,
+          name: faker.address.city(),
+          address: faker.address.streetAddress(true),
+          status: faker.random.arrayElement(["Open", "Closed"]),
+          storeHours: faker.random.arrayElement(["Store Hours", "10:00-18:00"]),
         }
       );
     }
@@ -77,21 +74,21 @@ export class InMemoryDataService implements InMemoryDbService {
       }
       products.push(
         {
-          "id": id,
-          "category": faker.random.arrayElement(this.categories),
-          "name": faker.commerce.productName(),
-          "description": faker.commerce.productDescription(),
-          "image": faker.random.image(),
-          "status": faker.random.arrayElement(["available", "not_available", "coming_soon"]),
-          "reviews": reviews,
-          "rating": {
-            "value": faker.datatype.float({ min: 1, max: 5 }),
-            "total": 5
+          id: id,
+          category: faker.random.arrayElement(this.categories),
+          name: faker.commerce.productName(),
+          description: faker.lorem.words(10),
+          image: faker.random.image(),
+          status: faker.random.arrayElement(["available", "not_available", "coming_soon"]),
+          reviews: reviews,
+          rating: {
+            value: faker.datatype.float({ min: 1, max: 5 }),
+            total: 5
           },
-          "price": {
-            "value": faker.commerce.price(1, 20),
-            "oldValue": faker.commerce.price(1, 20),
-            "currency": 'USD'//faker.finance.currencyCode()
+          price: {
+            value: faker.commerce.price(1, 20),
+            oldValue: faker.commerce.price(1, 20),
+            currency: 'USD'//faker.finance.currencyCode()
           }
         },
       );

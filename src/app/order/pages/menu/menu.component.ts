@@ -24,7 +24,8 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   onCategorySelect(id: any): void {
     this.facade.setSelectedCategory(id);
-
+    console.log('categ id:', id);
+    
     if (id == CategoryType.All) {
       this.facade.loadProducts();
     } else {

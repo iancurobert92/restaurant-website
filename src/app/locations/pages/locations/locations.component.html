@@ -21,11 +21,10 @@
     <ng-container *ngIf="locations.length > 0; else noData">
       <app-locations-card class="mb-5" *ngFor="let location of locations" [data] = "location"></app-locations-card>
     </ng-container> 
+    <ng-template #noData>
+      <div class="h4 p-4 text-center">No Data Available</div>
+    </ng-template>
   </div>
 </div>
 
 <app-footer></app-footer>
-
-<ng-template #noData>
-  No Data Available
-</ng-template>
